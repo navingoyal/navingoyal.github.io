@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research — Navin Goyal</title>
+  <meta name="description" content="Navin Goyal's research: the science of AI, theoretical computer science, and looking ahead.">
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}</script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <button class="theme-toggle icon" type="button" aria-label="Switch to light background" title="Switch to light background"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg></button>
+      <p class="site-name"><a href="index.html">Navin Goyal</a></p>
+      <p class="site-tagline">Principal Researcher, Microsoft Research India</p>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html" aria-current="page">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="mentoring.html">Mentoring</a></li>
+        <li><a href="navin_goyal_cv.pdf">CV (PDF)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <h1>Research</h1>
+    <nav class="pub-toc" aria-label="Sections on this page"><ul><li><a href="#science-of-ai">Science of AI</a></li><li><a href="#theoretical-computer-science">Theoretical computer science</a></li><li><a href="#looking-ahead">Looking ahead</a></li></ul></nav>
+
+    <section class="research-section" aria-labelledby="science-of-ai">
+      <h2 id="science-of-ai">Science of AI</h2>
+      <p>I am interested in
+        the science of AI: Why does it work as well as it does, and what are its limitations? How might those
+        limitations be addressed?</p>
+      <p>Some general approaches to such questions are constructing mathematical theories (like physics) and
+        trying to understand how models work and develop during training (like biology). We can do the latter
+        from the outside, by studying a model's behaviour (as in our work on
+        <a href="publications.html#panwar24-context">in-context learning through the Bayesian prism</a>), or by
+        looking into its innards, which is called mechanistic interpretability (as in
+        <a href="publications.html#huang24-inversionview">InversionView</a>).</p>
+      <h3>Mathematical theory</h3>
+      <p>The behaviour of language models can often be expressed by Bayesian inference. But they can also
+        <a href="publications.html#panwar24-context">deviate from it</a>, sometimes in very interesting ways, to
+        do the “right” thing. How can we explain this?
+        <a href="https://en.wikipedia.org/wiki/Solomonoff%27s_theory_of_inductive_inference">Solomonoff induction</a>
+        offers clues (see our work on <a href="publications.html#hahn23-theory">emergent in-context learning</a>
+        and on <a href="publications.html#ahuja25-learning">hierarchical generalisation in transformers</a>), but
+        since it is computationally ineffective, something else is needed. A theory could be
+        phenomenological, describing what models do without deriving it from how they work, much as
+        thermodynamics describes heat without reference to molecules, as in the above works; or it could be
+        built from first principles, as in our work on learning and generalisation in
+        <a href="publications.html#shah22-learning">normalising flows</a> and in
+        <a href="publications.html#panigrahi21-learning">recurrent neural networks</a>. In first-principles
+        theories, however, we can work only in restricted settings, such as one-hidden-layer networks of very
+        large width.</p>
+      <h3>AI for mathematics</h3>
+      <p>Some early work of ours studied how transformers
+        <a href="publications.html#agarwal21-analyzing">simplify polynomials</a>, showing that step-wise
+        solutions boost accuracy. This is akin to the famous idea of chain of thought, but applied to training
+        data instead of in context. We also wrote an early paper on autoformalisation, building a
+        <a href="publications.html#agrawal22-towards">mathematics formalisation assistant</a> with large language
+        models.</p>
+      <p id="open-ended-learning"><strong>Open-ended learning.</strong> Mathematicians do not just solve problems;
+        they build theories, deciding which definitions, questions and directions are worth pursuing. This
+        judgement is often guided by curiosity and a sense of what is interesting. I am currently thinking about
+        open-ended learning in this sense: how a learner, human or machine, decides what to do next, and whether
+        notions such as interestingness and curiosity can be made precise enough to study and to build into AI
+        systems.</p>
+      <h3>Dataset construction</h3>
+      <p>I have worked on constructing datasets for training and evaluating AI models. A recent example is
+        <a href="publications.html#kalyan25-curll">a dataset for continual learning</a> inspired by how children
+        learn. It fills several gaps in previous datasets; for example, new skills that the model learns build
+        upon previous ones. Another is <a href="publications.html#varhade26-winsyn">a pipeline for generating
+        communication among the employees of a company</a> over a period of time. This includes emails, but could
+        be much richer, including chat messages, meeting transcripts, pull requests, and so on. In the real world
+        a communication dataset like this has a rich internal structure; keeping all of it intact in the
+        synthetic dataset, and approaching realism, are the challenges we tackled in this work.</p>
+      <p>Work on dataset construction has given me an appreciation of how difficult it is. I have come to believe
+        that most benchmarks have subtle but consequential flaws. Just as
+        <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">George Box said of models</a>, most datasets
+        are wrong, but some are useful. One obvious failure mode is errors by crowd workers (and now, increasingly, by LLMs).
+        More interestingly, there can be subtle errors in the design itself, for example in failing to
+        anticipate all the ways in which a problem can be solved. Capturing the complexity of the real world is
+        not easy.</p>
+    </section>
+
+    <section class="research-section" aria-labelledby="theoretical-computer-science">
+      <h2 id="theoretical-computer-science">Theoretical computer science</h2>
+      <p>Today the toolkit of a theoretical computer scientist covers a broad swathe: combinatorics,
+        probability, information theory, high-dimensional geometry, algebra and more. One of the joys of working
+        in the area is this wide range of connections (see, e.g., Avi Wigderson's book
+        <a href="https://www.math.ias.edu/avi/book"><i>Mathematics and Computation</i></a>).</p>
+      <p>Among other things, I have worked on information-theoretic problems
+        (<a href="publications.html#goyal08-lower">lower bounds for noisy broadcast</a>,
+        <a href="publications.html#goyal03-optimal">separating two models of parallel computation</a>),
+        combinatorial optimisation (<a href="publications.html#goyal13-vpn">the VPN conjecture in network
+        design</a>), algorithms (<a href="publications.html#frieze14-expanders">expanders from random spanning
+        trees</a>), combinatorics (<a href="publications.html#chandrasekaran13-deterministic">the Lovász local
+        lemma</a>, <a href="publications.html#goyal15-query">a lower bound for sampling</a>,
+        <a href="publications.html#goyal05-parallel">a parallel search game</a>), and machine learning and
+        statistics (<a href="publications.html#agrawal17-near">Thompson sampling</a>,
+        <a href="publications.html#goyal14-fourier">Fourier PCA and robust tensor decomposition</a>,
+        <a href="publications.html#anderson15-heavy">heavy-tailed independent component analysis</a>).</p>
+      <p>Yet beneath this variety one sometimes finds a combinatorial core. Israel Gelfand made the point about
+        mathematics:</p>
+      <blockquote>
+        <p>The older I get, the more I believe that at the bottom of most deep mathematical problems there is a
+          combinatorial problem.</p>
+        <footer>— Israel Gelfand, lecture at the Courant Institute (1990);
+          <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Gelfand/quotations/">source</a></footer>
+      </blockquote>
+      <p>I have often found this in my own work. Simplified further, such problems can make rather
+        interesting puzzles. Here are two examples.</p>
+
+      <div class="puzzle">
+        <h3>Cutting a box</h3>
+        <p>Take a box <i>A</i><sub>1</sub> × <i>A</i><sub>2</sub> × ⋯ × <i>A</i><sub><i>n</i></sub>, where each
+          <i>A</i><sub><i>i</i></sub> is a finite set with at least two elements. Cut it into sub-boxes
+          <i>B</i><sub>1</sub> × <i>B</i><sub>2</sub> × ⋯ × <i>B</i><sub><i>n</i></sub> in which every side
+          <i>B</i><sub><i>i</i></sub> is a non-empty <em>proper</em> subset of <i>A</i><sub><i>i</i></sub> (any
+          subset, not necessarily an interval). Show that you need at least 2<sup><i>n</i></sup> pieces.</p>
+        <p>For <i>n</i> = 2: if you cut a grid into combinatorial rectangles, none of which uses all the rows
+          or all the columns, you need at least four of them.</p>
+        <p class="puzzle-source">This is a theorem of <a href="https://web.math.princeton.edu/~nalon/PDFS/abhk1.pdf">Alon, Bohman,
+          Holzman and Kleitman (2002)</a>; the proof is very short. In our
+          work on <a href="publications.html#goyal15-query">the query complexity of sampling</a>, we study a
+          <i>q</i>-analogue of it.</p>
+      </div>
+
+      <div class="puzzle">
+        <h3>Searching boxes in parallel</h3>
+        <p>There are <i>a</i> boxes and <i>a</i> slips of paper, numbered 0 to <i>a</i> − 1. The slips are put
+          into the boxes in random order, one per box. A team of <i>a</i> players, also numbered 0 to
+          <i>a</i> − 1, enter the room one at a time. Each player may open at most half of the boxes, looking for
+          the slip with their own number, and then leaves without disturbing anything or communicating with the
+          others. The team wins only if every player finds their own slip.</p>
+        <p>If every player opens boxes at random, the team wins with probability 2<sup>−<i>a</i></sup>. Can the
+          team do much better, say with a probability that does not go to zero as <i>a</i> grows?</p>
+        <p class="puzzle-source">This is a special case of a game of Gál and Miltersen, which we studied in
+          <a href="publications.html#goyal05-parallel">a paper on parallel search</a>.</p>
+        <details class="answer">
+          <summary>Answer</summary>
+          <p>Yes. Player <i>i</i> opens box <i>i</i>, then the box whose number is on the slip found there, and
+            so on, following the cycle of the permutation that contains <i>i</i>. Everyone succeeds exactly when
+            the random permutation has no cycle longer than <i>a</i>/2, which happens with probability about
+            1 − ln 2 ≈ 0.31. This strategy is due to S. Skyum. In our paper we show that this kind of correlated
+            success persists in the general game, answering a question of Gál and Miltersen in the negative. This
+            special case is now widely known as the
+            <a href="https://en.wikipedia.org/wiki/100_prisoners_problem">100 prisoners problem</a>.</p>
+        </details>
+      </div>
+      <p>Some of my AI work uses ideas from theoretical computer science directly: for example, which
+        <a href="publications.html#bhattamishra20-ability">formal languages transformers can recognise</a>, or
+        <a href="publications.html#hahn23-theory">Solomonoff induction as a lens on in-context learning</a>.</p>
+    </section>
+
+    <section class="research-section" aria-labelledby="looking-ahead">
+      <h2 id="looking-ahead">Looking ahead</h2>
+      <p>I want to understand how complex systems work, well enough to explain and anticipate their behaviour.
+        Many have so far resisted this: natural ones such as the cell, the brain, ecosystems and the economy, but
+        also ones we built ourselves, such as <a href="publications.html#varhade26-winsyn">organisations</a>, large
+        codebases, distributed systems and AI models. As AI agents take
+        on more of our work, they will create many new systems of this kind, and AI may also give us new ways to
+        understand them. What mathematical theories can we have for such systems, and what new tools will we
+        need?</p>
+      <p>Beyond the science, I am also looking into some new questions. In the face of rapid
+        advances in AI, questions about its effect on humanity, at both the individual and the societal level,
+        have taken on a new urgency. Social sciences, humanities, sciences and more—all spheres of human
+        learning—will have to come together in the dialogue on these questions. In particular, what is the future
+        of mathematics in this new world?</p>
+      <p>The title of Paul Gauguin's masterpiece sums it up well:
+        <a href="https://en.wikipedia.org/wiki/Where_Do_We_Come_From%3F_What_Are_We%3F_Where_Are_We_Going%3F"><i>Where
+        Do We Come From? What Are We? Where Are We Going?</i></a></p>
+    </section>
+  </main>
+  <script src="assets/theme.js" defer></script>
+</body>
+</html>

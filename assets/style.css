@@ -1,0 +1,195 @@
+/* Navin Goyal — homepage stylesheet. Design "Blackboard": the slate of a theory talk.
+   All visual decisions live here; the HTML only uses semantic elements and a few classes.
+   Two colour schemes share every rule: dark (default, chalkboard) and light (html[data-theme="light"]),
+   switched by the button in the header (assets/theme.js). Without JavaScript the page stays dark. */
+
+@font-face {
+  font-family: "Crimson Pro"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("fonts/CrimsonPro-Variable-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Crimson Pro"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("fonts/CrimsonPro-Italic-latin.woff2") format("woff2");
+}
+
+:root {
+  /* typography */
+  --font-body: "Crimson Pro", Georgia, serif;
+  --font-heading: var(--font-body);
+  --font-size: 1.25rem;
+  --line-height: 1.55;
+
+  /* colour: dark (chalkboard) */
+  --color-text: #ecebe3;        /* chalk white */
+  --color-muted: #b7bdb2;
+  --color-bg: #2d3a33;          /* slate green */
+  --color-accent: #ead68c;      /* chalk yellow */
+  --color-accent-soft: #3a4a41;
+  --color-rule: #4f5f55;
+  --color-award: #9fd3c7;
+  --color-on-accent: #1d2620;
+
+  /* layout */
+  --measure: 42rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.75rem;
+  --space-5: 3rem;
+}
+
+/* colour: light (chalk dust) */
+:root[data-theme="light"] {
+  --color-text: #22302a;
+  --color-muted: #56635b;
+  --color-bg: #f3f5f1;
+  --color-accent: #7f5f0c;      /* chalk yellow darkened to ochre for contrast on light */
+  --color-accent-soft: #e6ebe4;
+  --color-rule: #c4cec6;
+  --color-award: #2c6e61;
+  --color-on-accent: #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; background: var(--color-bg); }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+a { color: var(--color-accent); text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; border-radius: 2px; }
+
+.skip-link {
+  position: absolute; left: var(--space-3); top: -3rem;
+  background: var(--color-accent); color: var(--color-on-accent); padding: var(--space-2) var(--space-3);
+  z-index: 10;
+}
+.skip-link:focus { top: var(--space-3); }
+
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 var(--space-3); }
+
+/* ---------- header & nav ---------- */
+.site-header { border-bottom: 1px dashed var(--color-rule); padding: var(--space-5) 0 var(--space-3); }
+.site-header .wrap { position: relative; }
+.site-name { margin: 0; font-size: 2.6rem; font-weight: 400; font-style: italic; line-height: 1.15; }
+.site-name a { color: inherit; text-decoration: none; }
+.site-tagline { margin: var(--space-1) 0 0; color: var(--color-muted); font-size: 1.15rem; }
+
+.site-nav ul {
+  list-style: none; margin: var(--space-3) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+  font-size: 1.15rem;
+}
+.site-nav a { text-decoration: none; color: var(--color-muted); padding: var(--space-1) 0; }
+.site-nav a:hover { color: var(--color-text); }
+.site-nav a[aria-current="page"] { color: var(--color-text); border-bottom: 1px solid var(--color-accent); }
+
+.theme-toggle {
+  position: absolute; top: 0.4rem; right: var(--space-3);
+  font: inherit; font-size: 0.95rem; cursor: pointer;
+  color: var(--color-muted); background: transparent;
+  border: 1px solid var(--color-rule); border-radius: 999px; padding: 0.15rem 0.8rem;
+}
+.theme-toggle:hover { color: var(--color-text); border-color: var(--color-muted); }
+.theme-toggle.icon { width: 2.2rem; height: 2.2rem; padding: 0; display: grid; place-items: center; }
+.theme-toggle.icon svg { width: 1.15rem; height: 1.15rem; }
+.theme-toggle.icon .moon { display: none; }
+:root[data-theme="light"] .theme-toggle.icon .sun { display: none; }
+:root[data-theme="light"] .theme-toggle.icon .moon { display: block; }
+
+/* ---------- main content ---------- */
+main.wrap { padding-top: var(--space-4); padding-bottom: var(--space-5); }
+
+h1, h2, h3, h4 { line-height: 1.25; color: var(--color-text); font-weight: 600; }
+h1 { font-size: 2rem; margin: 0 0 var(--space-3); }
+h2 {
+  font-size: 1.35rem; margin: var(--space-5) 0 var(--space-3); padding-bottom: var(--space-1);
+  border-bottom: 1px dashed var(--color-rule);
+}
+main > :first-child, main > section:first-child > h2:first-child { margin-top: 0; }
+
+.lede { font-size: 1.05em; }
+.muted { color: var(--color-muted); }
+
+.profile-links {
+  list-style: none; padding: 0; margin: var(--space-3) 0 0;
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+}
+
+/* a sample of my work (home) */
+.paper-list { padding-left: 1.2rem; margin: var(--space-2) 0 0; }
+.paper-list li { margin-bottom: var(--space-2); }
+
+/* dated entries (teaching) */
+.entries { list-style: none; padding: 0; margin: 0; }
+.entries li { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--space-3); margin-bottom: var(--space-3); }
+.entries .when { color: var(--color-muted); font-size: 0.95rem; padding-top: 0.15em; }
+.entries .what { margin: 0; }
+.entries .detail { display: block; color: var(--color-muted); font-size: 0.95em; }
+
+/* ---------- research page ---------- */
+
+blockquote { margin: var(--space-4) 0; padding-left: var(--space-3); border-left: 2px solid var(--color-accent); font-style: italic; }
+blockquote footer { font-style: normal; color: var(--color-muted); font-size: 0.9em; }
+
+.puzzle {
+  margin: var(--space-4) 0; padding: var(--space-3) var(--space-3) var(--space-3);
+  border: 1px dashed var(--color-rule); border-radius: 4px; background: var(--color-accent-soft);
+}
+.puzzle h3 { margin: 0 0 var(--space-2); font-size: 1.1rem; font-style: italic; }
+.research-section > h3 { font-size: 1.2rem; margin: var(--space-4) 0 var(--space-2); }
+.puzzle p:last-child { margin-bottom: 0; }
+.puzzle-source { color: var(--color-muted); font-size: 0.95em; }
+details.answer > summary { cursor: pointer; color: var(--color-accent); }
+
+/* ---------- publications ---------- */
+.pub-toc ul { list-style: none; padding: 0; margin: var(--space-3) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.pubs { list-style: none; padding: 0; margin: 0; }
+.pub { margin-bottom: var(--space-3); }
+.pub > span { margin-right: 0.15em; }
+.pub-title { font-weight: 600; }
+.pub-note, .pub-xref { color: var(--color-muted); font-size: 0.95em; }
+.pub-award { display: block; color: var(--color-award); font-size: 0.95em; }
+.pub-award::before { content: "★ "; }
+.pub-links { display: block; margin-top: 0.1em; font-size: 0.8rem; }
+.pub-links a {
+  display: inline-block; margin-right: var(--space-2); padding: 0 0.45em;
+  border: 1px solid var(--color-rule); border-radius: 2px; text-decoration: none;
+}
+.pub-links a:hover { background: var(--color-accent-soft); }
+:target { background: var(--color-accent-soft); }
+
+/* ---------- mentoring ---------- */
+.people {
+  list-style: none; padding: 0; margin: 0;
+  columns: 2 16rem; column-gap: var(--space-4);
+}
+.people li { break-inside: avoid; margin-bottom: var(--space-1); }
+.person-note { color: var(--color-muted); }
+.heading-note { color: var(--color-muted); font-weight: 400; font-size: 0.8em; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 34rem) {
+  :root { --font-size: 1.125rem; }
+  .site-header { padding-top: var(--space-4); }
+  .site-name { font-size: 2.1rem; }
+  .theme-toggle { position: static; margin-bottom: var(--space-3); }
+  .entries li { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ---------- print: always light ---------- */
+@media print {
+  :root {
+    --color-text: #000; --color-muted: #444; --color-bg: #fff; --color-accent: #000;
+    --color-accent-soft: #fff; --color-rule: #999; --color-award: #000;
+  }
+  .site-nav, .skip-link, .pub-links, .theme-toggle { display: none; }
+}
